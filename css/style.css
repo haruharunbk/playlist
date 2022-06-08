@@ -1,0 +1,70 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap');
+/* reset  */
+*{margin: 0; padding: 0; box-sizing: border-box; font-family: "Rubik";}
+ul, li, ol{list-style-type: none;}
+a{text-decoration: none;outline: 0;}
+figure{position: relative; width: 100%; height: 100vh; overflow: hidden; background: linear-gradient(25deg, rgb(211, 255, 251), rgb(33, 101, 228));}
+figure h1{position: absolute; top: 7vh; left: 4vw; font-size: 0; color: #fff; line-height: 1; letter-spacing: 1px;}
+figure h1 strong{font-size: 36px;}
+figure h1 span{font-size: 18px; line-height: 1.5;}
+figure > p{position: absolute; bottom: 7vh; left: 50%; transform: translateX(-50%); font: 12px/1 "Rubik"; color: #333; letter-spacing:1.5px; /* opacity: 0.8; */}
+
+/* //뮤직 플레이어 패널 프레임  */
+/*음악 플레이어 패널 프레임 그룹*/
+figure section {width: 20vw; height: 65vh; position: absolute; left: 50%; top: 140%; margin-top: -25vh; margin-left: -10vw; transition: 1s;}
+/*개별 음악 플레이어 패널*/
+figure section article {position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;}
+
+/*음악 플레이어 패널 콘텐츠 그룹*/
+figure section article .inner {width: 100%; height: 100%; padding: 5vh 2.5vw 8vh; box-sizing: border-box; display: flex; justify-content: center; align-content: space-between; flex-wrap: wrap; border-radius: 10px; box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1); background: #f0f7ff; opacity: 0.6; transform: scale(0.8); transition: opacity 1s, transform 1s;}
+figure section article.on .inner{opacity: 1; transform: scale(1.0);}
+
+figure section article .inner .pic{ width: 15vw; height: 15vw; background-color: rgb(167, 167, 167); margin: 0px auto; border-radius: 50%; background-repeat: no-repeat; background-position: 150%; position: relative; display: flex; justify-content: center; align-items: center;}
+figure section article .inner .pic::before,
+figure section article .inner .pic::after{content: ""; display: block; width: inherit; height: inherit; border-radius: inherit; position: absolute; top: 0; left: 0; background-image: inherit; background-position: center; background-repeat: inherit; background-size: cover; transform-origin: center center;}
+figure section article .inner .pic::before{transform: translateY(10%); filter: blur(20px) brightness(1.5);}
+figure section article .inner .pic .dot{z-index: 3; position: relative; width: 3vw; height: 3vw; border-radius: 50%; background: #e4f1ff; box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1);}
+figure section article .inner .txt{z-index: 3; position: relative; text-align: center; max-width: 210px; width: 100%;}
+figure section article .inner .txt h2{font-size: 20px; color: #333; margin-bottom: 2vh;}
+figure section article .inner .txt p{font-size: 12px; margin-bottom: 3vh; color: #777;}
+figure section article .inner .txt ul{display: flex; justify-content: space-around;}
+figure section article .inner .txt ul li{cursor: pointer; opacity: 0.6; transition: 0.5s;}
+figure section article .inner .txt ul li.play{transform: scale(1.5); opacity: 0.9;}
+figure section article .inner .txt ul li:hover{transform: scale(1.5); opacity: 0.8;}
+figure section article .inner .txt ul li.play:hover{transform: scale(2); opacity: 1;}
+@keyframes picOn {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+@keyframes picShadow {
+    0% {transform: translateY(10%) rotate(0deg);}    
+    100% {transform: translateY(10%) rotate(360deg);}    
+}
+figure section article .inner .pic.on::after{animation: picOn 4s linear infinite;}
+figure section article .inner .pic.on::before{animation: picShadow 4s linear infinite;}
+
+
+/* 버튼  */
+figure .btnPrev, figure .btnNext{position: absolute; left: 50%; top: 50%; width: 40px; height: 40px; display: flex; align-content: center; text-align: center; cursor: pointer;}
+figure .btnPrev{transform: translate(-20vw, -50%);}
+figure .btnNext{transform: translate(20vw, -50%);}
+
+figure .btnPrev span, figure .btnNext span{font: 11px/1 "Rubik"; color: #333; opacity: 1; transition: 0.5s;}
+figure .btnPrev span{transform: translateX(30%);}
+figure .btnNext span{transform: translateX(-30%);}
+
+figure .btnPrev::before, figure .btnPrev::after ,figure .btnNext::before, figure .btnNext::after{content: ""; display: block; position: absolute; left: 0px; width: 100%; height: 2px; background-color: transparent; transition: 0.5s;}
+figure .btnPrev::before{top: 50%;  transform-origin: left center; transform: rotate(-180deg);}
+figure .btnPrev::after{bottom: 50%; transform-origin: left center; transform: rotate(180deg);}
+figure .btnNext::before{top: 50%; transform-origin: right center; transform: rotate(180deg); transition: 0.5s;}
+figure .btnNext::after{bottom: 50%; transform-origin: right center; transform: rotate(-180deg); transition: 0.5s;}
+
+figure .btnPrev:hover span,figure .btnNext:hover span{opacity: 0;}
+figure .btnPrev:hover span{transform: translateX(100%);}
+figure .btnNext:hover span{transform: translateX(-100%);}
+
+/*버튼 효과  */
+figure .btnNext:hover::after, figure .btnPrev:hover::before{transform: rotate(-30deg); background-color: #333;}
+figure .btnNext:hover::before, figure .btnPrev:hover::after{transform: rotate(30deg); background-color: #333;}
+
